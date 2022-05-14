@@ -7,7 +7,7 @@ import com.example.randomimage.api.ImageDataResponse
 
 @Entity
 data class ImageData(
-    @PrimaryKey(autoGenerate = true) val id: Int,
+    @PrimaryKey val id: String,
     val author: String,
     val width: Int,
     val height: Int,
@@ -17,7 +17,7 @@ data class ImageData(
     companion object {
         fun from(imageDataResponse: ImageDataResponse): ImageData = with(imageDataResponse) {
             ImageData(
-                id = 0,
+                id,
                 author,
                 width,
                 height,
