@@ -45,5 +45,6 @@ class ImageRepository @Inject constructor(
         }
     }
 
+    //Used for debug
     suspend fun deleteAll() = imageDao.deleteAll()
 }
