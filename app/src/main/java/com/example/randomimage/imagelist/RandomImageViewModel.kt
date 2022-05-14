@@ -1,4 +1,4 @@
-package com.example.randomimage.ui
+package com.example.randomimage.imagelist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -14,18 +14,14 @@ class RandomImageViewModel @Inject constructor(
     private val imageRepository: ImageRepository
 ) : ViewModel() {
 
-    init {
-        viewModelScope.launch {
-            imageRepository.deleteAll()
-        }
-    }
-
     val savedImage: Flow<List<ImageListDataObject>> = imageRepository.getSavedImages().transform {
         emit(
             it.map { imageData ->
-            ImageListDataObject.from(imageData)
+                ImageListDataObject.from(imageData)
         })
     }
+
+    val error = imageRepository.errorStateFlow
 
     fun fetchAllImageAndInsertRandom() = viewModelScope.launch {
         imageRepository.fetchAllImageAndInsertRandom()

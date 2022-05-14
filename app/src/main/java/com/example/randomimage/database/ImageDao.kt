@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ImageDao {
 
-    @Query("SELECT * FROM imageData")
+    @Query("SELECT * FROM imageData ORDER BY id DESC")
     fun getAll(): Flow<List<ImageData>>
 
     @Query("SELECT * FROM imageData WHERE id LIKE :id LIMIT 1")

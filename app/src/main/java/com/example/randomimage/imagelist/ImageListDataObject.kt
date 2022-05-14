@@ -1,4 +1,4 @@
-package com.example.randomimage.ui
+package com.example.randomimage.imagelist
 
 import com.example.randomimage.database.ImageData
 

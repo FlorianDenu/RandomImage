@@ -4,6 +4,8 @@ import com.example.randomimage.api.ImageDataResponse
 import com.example.randomimage.api.ImageService
 import com.example.randomimage.database.ImageDao
 import com.example.randomimage.database.ImageData
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 
 class ImageRepository @Inject constructor(
@@ -17,6 +19,8 @@ class ImageRepository @Inject constructor(
     // My understanding is that we should only save in the DB a random element from the list
     // however i would like to avoid doing too much unnecessary network calls
     private var imageDataList: List<ImageDataResponse>? = null
+    private val _errorStateFlow: MutableStateFlow<String> = MutableStateFlow("")
+    val errorStateFlow: StateFlow<String> = _errorStateFlow
 
     fun getSavedImages() = imageDao.getAll()
 
@@ -27,7 +31,7 @@ class ImageRepository @Inject constructor(
                 imageDataList = response.body()
                 saveRandomImage()
             } else {
-                // Error scenario
+                _errorStateFlow.value = response.message()
             }
         } else {
             saveRandomImage()
