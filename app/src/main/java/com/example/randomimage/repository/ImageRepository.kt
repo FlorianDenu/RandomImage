@@ -29,7 +29,7 @@ class ImageRepository @Inject constructor(
 
     suspend fun fetchAllImageAndInsertRandom() {
         if (imageDataList == null) {
-            val response = imageService.getAllPicture()
+            val response = imageService.getAllPictures()
             if (response.isSuccessful && response.body() != null) {
                 imageDataList = response.body()
                 saveRandomImage()

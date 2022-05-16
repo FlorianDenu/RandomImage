@@ -6,5 +6,5 @@ import retrofit2.http.GET
 interface ImageService {
 
     @GET("v2/list")
-    suspend fun getAllPicture(): Response<List<ImageDataResponse>>
+    suspend fun getAllPictures(): Response<List<ImageDataResponse>>
 }
