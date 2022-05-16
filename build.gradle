@@ -7,6 +7,9 @@ buildscript {
         room_version = "2.4.2"
         hilt_nav_version = '1.0.0'
         coil_version = '2.0.0'
+        mockk_version = '1.12.4'
+        turbine_version = '0.8.0'
+        robot_electric_version = '4.8'
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"

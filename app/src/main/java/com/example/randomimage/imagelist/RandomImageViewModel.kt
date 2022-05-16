@@ -14,7 +14,7 @@ class RandomImageViewModel @Inject constructor(
     private val imageRepository: ImageRepository
 ) : ViewModel() {
 
-    val savedImage: Flow<List<ImageListDataObject>> = imageRepository.getSavedImages().transform {
+        val savedImage: Flow<List<ImageListDataObject>> = imageRepository.getSavedImages().transform {
         emit(
             it.map { imageData ->
                 ImageListDataObject.from(imageData)

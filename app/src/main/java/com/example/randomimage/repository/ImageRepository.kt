@@ -1,5 +1,6 @@
 package com.example.randomimage.repository
 
+import androidx.annotation.VisibleForTesting
 import com.example.randomimage.api.ImageDataResponse
 import com.example.randomimage.api.ImageService
 import com.example.randomimage.database.ImageDao
@@ -18,7 +19,9 @@ class ImageRepository @Inject constructor(
     //add it to the bottom of a list of items.
     // My understanding is that we should only save in the DB a random element from the list
     // however i would like to avoid doing too much unnecessary network calls
-    private var imageDataList: List<ImageDataResponse>? = null
+
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    var imageDataList: List<ImageDataResponse>? = null
     private val _errorStateFlow: MutableStateFlow<String> = MutableStateFlow("")
     val errorStateFlow: StateFlow<String> = _errorStateFlow
 
