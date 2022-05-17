@@ -30,7 +30,7 @@ class ImageRepositoryTest {
     fun `given response is success when body is not null then image dao insert is called once`() =
         runBlocking {
             val imageRepository = ImageRepository(imageService, imageDao)
-            coEvery { imageService.getAllPicture() } returns Response.success(mockedList)
+            coEvery { imageService.getAllPictures() } returns Response.success(mockedList)
 
             imageRepository.fetchAllImageAndInsertRandom()
 
@@ -42,19 +42,19 @@ class ImageRepositoryTest {
         runBlocking {
             val imageRepository = ImageRepository(imageService, imageDao)
             imageRepository.imageDataList = mockedList
-            coEvery { imageService.getAllPicture() } returns Response.success(mockedList)
+            coEvery { imageService.getAllPictures() } returns Response.success(mockedList)
 
             imageRepository.fetchAllImageAndInsertRandom()
 
             coVerify(exactly = 1) { imageDao.insert(any()) }
-            coVerify { imageService.getAllPicture() wasNot Called }
+            coVerify { imageService.getAllPictures() wasNot Called }
         }
 
     @Test
     fun `given response is error then image dao insert is called and error message is not null`() =
         runBlocking {
             val imageRepository = ImageRepository(imageService, imageDao)
-            coEvery { imageService.getAllPicture() } returns Response.error(400, mockk(relaxed = true))
+            coEvery { imageService.getAllPictures() } returns Response.error(400, mockk(relaxed = true))
 
             imageRepository.fetchAllImageAndInsertRandom()
 

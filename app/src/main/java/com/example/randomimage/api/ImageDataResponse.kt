@@ -3,10 +3,10 @@ package com.example.randomimage.api
 import com.google.gson.annotations.SerializedName
 
 data class ImageDataResponse(
-    val id: String,
-    val author: String,
-    val width: Int,
-    val height: Int,
-    val url: String,
+    @SerializedName("id") val id: String,
+    @SerializedName("author") val author: String,
+    @SerializedName("width") val width: Int,
+    @SerializedName("height") val height: Int,
+    @SerializedName("url") val url: String,
     @SerializedName("download_url") val downloadUrl: String
 )
